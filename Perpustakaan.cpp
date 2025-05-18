@@ -301,7 +301,7 @@ int main() {
                 bacaDariFile();
                 break;
 
-            case 9; {
+            case 9: {
                 string nama;
                 int id;
                 cout << "Masukkan nama anggota: ";
