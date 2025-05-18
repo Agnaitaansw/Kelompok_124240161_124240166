@@ -71,19 +71,19 @@ void tampilkanBuku() {
         return;
     }
 
-    cout << "-------------------------------------------------------------\n";
-    cout << "| Id_buku |    Judul Buku     | Tahun |    Pengarang    | Status |\n";
-    cout << "-------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------------------\n";
+    cout << "| Id_buku |      Judul Buku       | Tahun |    Pengarang     |   Status   |\n";
+    cout << "-----------------------------------------------------------------------------\n";
 
     while (temp) {
         cout << "| " << setw(7) << temp->id_buku
-             << " | " << setw(18) << temp->Judul
-             << " | " << setw(5) << temp->thn_terbit
-             << " | " << setw(15) << temp->pengarang
-             << " | " << (temp->tersedia ? "Tersedia" : "Dipinjam") << " |\n";
+             << " | " << setw(21) << left << temp->Judul.substr(0, 21)
+             << " | " << setw(5) << right << temp->thn_terbit
+             << " | " << setw(17) << left << temp->pengarang.substr(0, 17)
+             << " | " << setw(10) << (temp->tersedia ? "Tersedia" : "Dipinjam") << "|\n";
         temp = temp->next;
     }
-    cout << "-------------------------------------------------------------\n";
+    cout << "-----------------------------------------------------------------------------\n";
 }
 
 // Fungsi untuk mencari buku berdasarkan ID
