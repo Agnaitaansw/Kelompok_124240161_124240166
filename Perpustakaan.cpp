@@ -175,6 +175,35 @@ void bacaDariFile() {
     cout << "Data berhasil dibaca dari file.\n";
 }
 
+// Fungsi pengembalian buku
+void kembalikanBuku(string namaAnggota, int idBuku) {
+    peminjaman* prev = nullptr;
+    peminjaman* temp = front;
+
+    while (temp) {
+        if (temp->namaAnggota == namaAnggota && temp->idBuku == idBuku) {
+            if (temp == front) {
+                front = front->next;
+                if (temp == rear) rear = nullptr;
+            } else {
+                prev->next = temp->next;
+                if (temp == rear) rear = prev;
+            }    
+            Buku* buku = cariBuku(idBuku);
+            if (buku) buku->tersedia = true;
+
+            cout << "\nBuku '" << temp->judulBuku << "' telah dikembalikan oleh " << namaAnggota << ".\n";
+            delete temp;
+            return;
+        }
+
+        prev = temp;
+        temp = temp->next;
+    }
+
+    cout << "\nData peminjaman tidak ditemukan untuk pengembalian.\n";
+}
+
 // Fungsi utama
 int main() {
     int pilihan;
@@ -191,6 +220,7 @@ int main() {
         cout << "6. Tampilkan Antrian\n";
         cout << "7. Simpan ke File\n";
         cout << "8. Baca dari File\n";
+        cout << "9. Pengembalian Buku\n";
         cout << "0. Keluar\n";
         cout << "Pilihan Anda: ";
         cin >> pilihan;
@@ -270,6 +300,18 @@ int main() {
             case 8:
                 bacaDariFile();
                 break;
+
+            case 9; {
+                string nama;
+                int id;
+                cout << "Masukkan nama anggota: ";
+                cin.ignore();
+                getline(cin, nama);
+                cout << "Masukkan ID buku yang dikembalikan: ";
+                cin >> id;
+                kembalikanBuku(nama, id);
+                break;
+            }
 
             case 0:
                 cout << "Keluar dari program.\n";
