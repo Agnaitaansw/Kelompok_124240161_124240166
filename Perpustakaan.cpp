@@ -243,7 +243,7 @@ int main() {
                 tampilkanBuku();
                 break;
 
-            case 4: {
+              case 4: {
                 int id;
                 cout << "Masukkan ID Buku: ";
                 cin >> id;
@@ -255,6 +255,7 @@ int main() {
                 }
                 break;
             }
+
 
             case 5: {
                 string namaAnggota;
