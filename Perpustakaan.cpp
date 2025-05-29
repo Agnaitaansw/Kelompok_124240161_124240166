@@ -4,7 +4,7 @@
 #include <iomanip>
 using namespace std;
 
-// Struct Buku
+// Struct untuk menyimpan data Buku
 struct Buku {
     int id_buku;
     string Judul;
@@ -13,14 +13,14 @@ struct Buku {
     bool tersedia = true; 
     Buku* next;
 };
-// Struct anggota
+// Struct untuk menyimpan data anggota
 struct anggota {
     int idAnggota;
     string namaAnggota;
     anggota* next;
 };
 
-// Struct Peminjaman
+// Struct menyimpan data Peminjaman
 struct peminjaman {
     string namaAnggota;
     int idBuku;
@@ -33,7 +33,7 @@ Buku* headBuku = nullptr;
 peminjaman* front = nullptr;
 peminjaman* rear = nullptr;
 
-// Fungsi untuk menambah data buku
+// Fungsi untuk menambah data buku dalam linked list
 void tambahBuku(int id_Buku, string Judul, int thn_terbit, string pengarang) {
     Buku* baru = new Buku{id_Buku, Judul, thn_terbit, pengarang, true, nullptr};
     if (!headBuku)
@@ -46,7 +46,7 @@ void tambahBuku(int id_Buku, string Judul, int thn_terbit, string pengarang) {
     }
 }
 
-// Fungsi untuk mengurutkan data buku berdasarkan tahun terbit
+// Fungsi untuk mengurutkan data buku berdasarkan tahun terbit menggunakan Bubble Sort
 void mengurutkanBuku() {
     if (!headBuku || !headBuku->next) return;
 
@@ -86,17 +86,7 @@ void tampilkanBuku() {
     cout << "-----------------------------------------------------------------------------\n";
 }
 
-// Fungsi untuk mencari buku berdasarkan ID
-Buku* cariBuku(int idBuku) {
-    Buku* temp = headBuku;
-    while (temp) {
-        if (temp->id_buku == idBuku)
-            return temp;
-        temp = temp->next;
-    }
-    return nullptr;
-}
-// Fungsi untuk mencari buku berdasarkan ID
+// Fungsi untuk mencari buku berdasarkan ID menggunakan Sequential Search
 Buku* cariBuku(int idBuku) {
     Buku* temp = headBuku;
     while (temp) {
@@ -107,7 +97,7 @@ Buku* cariBuku(int idBuku) {
     return nullptr;
 }
 
-// Fungsi peminjaman (queue)
+// Fungsi peminjaman menggunakan materi Queue
 void antriPeminjaman(string namaAnggota, int idBuku) {
     Buku* buku = cariBuku(idBuku);
     if (!buku) {
@@ -129,7 +119,7 @@ void antriPeminjaman(string namaAnggota, int idBuku) {
     cout << "\nBuku '" << buku->Judul << "' berhasil dipinjam oleh " << namaAnggota << ".\n";
 }
 
-// Simpan data buku ke file
+// Simpan data buku ke file (ofstream untuk menyimpan data ke file)
 void simpanKeFile() {
     ofstream file("data_buku.txt");
     Buku* temp = headBuku;
@@ -140,9 +130,9 @@ void simpanKeFile() {
     file.close();
 }
 
-// Fungsi baca dari file
+// Fungsi baca dari file 
 void bacaDariFile() {
-    ifstream file("data_buku.txt");
+    ifstream file("data_buku.txt");  
     if (!file.is_open()) {
         cout << "Gagal membuka file.\n";
         return;
@@ -175,7 +165,7 @@ void bacaDariFile() {
     cout << "Data berhasil dibaca dari file.\n";
 }
 
-// Fungsi pengembalian buku
+// Fungsi pengembalian buku dengan menghapus dari antrian(dequeue)
 void kembalikanBuku(string namaAnggota, int idBuku) {
     peminjaman* prev = nullptr;
     peminjaman* temp = front;
@@ -204,7 +194,7 @@ void kembalikanBuku(string namaAnggota, int idBuku) {
     cout << "\nData peminjaman tidak ditemukan untuk pengembalian.\n";
 }
 
-// Fungsi utama
+// Fungsi utama untuk menu
 int main() {
     int pilihan;
 
