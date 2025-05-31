@@ -200,8 +200,8 @@ int main() {
 
     do {
         cout << "\n======================\n";
-        cout << "   Menu Perpustakaan\n";
-        cout << "======================\n";
+        cout << "    Menu Perpustakaan   \n";
+        cout << "========================\n";
         cout << "1. Tambah Buku\n";
         cout << "2. Urutkan Buku\n";
         cout << "3. Tampilkan Buku\n";
